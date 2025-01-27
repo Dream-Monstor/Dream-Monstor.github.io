@@ -23,6 +23,18 @@
             margin: 0;
             font-size: 2.5rem;
         }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
         main {
             padding: 20px;
             text-align: center;
@@ -101,6 +113,10 @@
     <header>
         <h1>Drishya Adhikari</h1>
         <p>Welcome to my personal portfolio</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
     </header>
 
     <main>
@@ -123,70 +139,43 @@
                 <button class="chat-button" onclick="sendMessage('favorite language')">What is your favorite programming language?</button>
                 <button class="chat-button" onclick="sendMessage('tell me a joke')">Tell me a joke</button>
                 <button class="chat-button" onclick="sendMessage('what is your goal')">What is your goal?</button>
-                <!-- New button for dark joke -->
                 <button class="chat-button" onclick="sendMessage('tell me a dark joke')">Tell me a dark joke</button>
             </div>
         </section>
     </main>
 
     <script>
-        // Function to add messages to the chat
         function appendMessage(sender, text) {
             const chatLog = document.getElementById('chatLog');
             const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            messageElement.classList.add(sender);
+            messageElement.classList.add('message', sender);
             messageElement.textContent = text;
             chatLog.appendChild(messageElement);
-            chatLog.scrollTop = chatLog.scrollHeight; // Scroll to the latest message
+            chatLog.scrollTop = chatLog.scrollHeight;
         }
 
-        // Function to send a message (user clicks button)
         function sendMessage(message) {
-            appendMessage('user', message); // Display user's message
+            appendMessage('user', message);
             setTimeout(() => {
-                getBotResponse(message); // Simulate bot response
-            }, 1000); // Delay to make it look like a real chat
+                getBotResponse(message);
+            }, 1000);
         }
 
-        // Function to get chatbot response
         function getBotResponse(message) {
             let response = '';
-
             switch (message) {
-                case 'hello':
-                    response = "Hello! How can I assist you today?";
-                    break;
-                case 'how are you':
-                    response = "I'm doing great, thank you for asking!";
-                    break;
-                case 'tell me about yourself':
-                    response = "I am Drishya Adhikari, a web developer and a tech enthusiast. I love coding and working on projects! I am also a car maniac and hence like to build lego technic models and passionate about hotwheels.";
-                    break;
-                case 'goodbye':
-                    response = "Goodbye! Have a great day!";
-                    break;
-                case 'what are your hobbies':
-                    response = "I enjoy coding, playing chess, reading literature, and experimenting with electronics!";
-                    break;
-                case 'favorite language':
-                    response = "My favorite programming language is Python, but I also enjoy working with JavaScript, C++ and HTML/CSS!";
-                    break;
-                case 'tell me a joke':
-                    response = "Why don't programmers like nature? It has too many bugs!";
-                    break;
-                case 'what is your goal':
-                    response = "My goal is to continue learning and growing in the field of web development and AI, and to contribute to open-source projects!";
-                    break;
-                // New case for dark joke
-                case 'tell me a dark joke':
-                    response = "What is the similarity between an orphan child and a blind child? They both cannot see their parents.💀";
-                    break;
-                default:
-                    response = "Sorry, I didn't understand that!";
+                case 'hello': response = "Hello! How can I assist you today?"; break;
+                case 'how are you': response = "I'm doing great, thank you for asking!"; break;
+                case 'tell me about yourself': response = "I am Drishya Adhikari, a web developer and tech enthusiast."; break;
+                case 'goodbye': response = "Goodbye! Have a great day!"; break;
+                case 'what are your hobbies': response = "I enjoy coding, playing chess, and experimenting with electronics!"; break;
+                case 'favorite language': response = "My favorite programming language is Python."; break;
+                case 'tell me a joke': response = "Why don't programmers like nature? It has too many bugs!"; break;
+                case 'what is your goal': response = "My goal is to learn and grow in web development and AI."; break;
+                case 'tell me a dark joke': response = "What is the similarity between an orphan and a blind child? They can't see their parents. 💀"; break;
+                default: response = "Sorry, I didn't understand that!";
             }
-
-            appendMessage('bot', response); // Display bot's response
+            appendMessage('bot', response);
         }
     </script>
 </body>
